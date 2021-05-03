@@ -12,21 +12,19 @@ object Main {
     SudokuPrinter.print(sudoku4x4)
 
     val sudoku9x9 = Array(
-      Array(1, 0, 0, 0, 0, 0, 0, 0, 5),
-      Array(0, 0, 0, 0, 3, 0, 0, 0, 0),
-      Array(0, 0, 2, 0, 4, 0, 0, 0, 0),
-
-      Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
-      Array(0, 3, 4, 0, 0, 0, 7, 0, 0),
-      Array(0, 0, 0, 2, 0, 6, 0, 0, 1),
-
-      Array(2, 0, 0, 0, 0, 5, 0, 0, 0),
-      Array(0, 7, 0, 0, 0, 0, 0, 3, 0),
-      Array(0, 0, 0, 0, 0, 1, 0, 0, 0),
+      Array(0, 0, 0, 0, 0, 9, 4, 7, 0),
+      Array(0, 0, 2, 0, 3, 0, 0, 9, 8),
+      Array(0, 6, 0, 0, 0, 2, 0, 0, 1),
+      Array(0, 0, 0, 0, 0, 0, 5, 0, 7),
+      Array(0, 7, 0, 0, 0, 0, 0, 6, 0),
+      Array(8, 0, 3, 0, 0, 0, 0, 0, 0),
+      Array(6, 0, 0, 1, 0, 0, 0, 2, 0),
+      Array(7, 4, 0, 0, 6, 0, 9, 0, 0),
+      Array(0, 1, 9, 4, 0, 0, 0, 0, 0),
     )
     SudokuPrinter.print(sudoku9x9)
     val solved9x9 = SudokuSolver.solve(sudoku9x9).get
-    SudokuPrinter.print(sudoku9x9)
+    SudokuPrinter.print(solved9x9)
   }
 
 }
