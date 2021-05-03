@@ -49,8 +49,7 @@ object SudokuSolver {
   private def makeAssumptions(sudoku: Array[Array[Int]], point: (Int, Int)): Set[Int] = {
     val row = getRow(sudoku, point._1)
     val column = getColumn(sudoku, point._2)
-    val availableValue = Set(1, 2, 3, 4)
-    availableValue -- row.toSet -- column.toSet
+    (1 to sudoku.length).toSet -- row.toSet -- column.toSet
   }
 
   private def getRow(sudoku: Array[Array[Int]], index: Int): Array[Int] = {
