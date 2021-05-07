@@ -1,9 +1,9 @@
 object SudokuPrinter {
 
-  def print(sudoku: Array[Array[Int]]): Unit = {
+  def print(sudoku: Sudoku): Unit = {
     println()
     println(
-      sudoku
+      sudoku.content
         .map(row => row.map(cell => if (cell == 0) " " else cell.toString))
         .map(row => "|" + row.mkString("|") + "|")
         .mkString("\n")
