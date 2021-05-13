@@ -14,17 +14,12 @@ case class Sudoku(content: Array[Array[Int]]) {
     content.forall(row => !row.contains(0))
   }
 
-
   def notSolvedPoints: Array[Point] = {
-    val result = scala.collection.mutable.ArrayBuffer.empty[Point]
-    content.zipWithIndex.foreach { case (row, rowIndex) =>
-      row.zipWithIndex.foreach { case (cell, columnIndex) =>
-        if (cell == 0) {
-          result.addOne(Point(rowIndex, columnIndex))
-        }
-      }
-    }
-    result.toArray
+    for {
+      (row, rowIndex) <- content.zipWithIndex
+      (cell, columnIndex) <- row.zipWithIndex
+      if (cell == 0)
+    } yield Point(rowIndex, columnIndex)
   }
 
   def getRow(index: Int): Array[Int] = {
@@ -32,15 +27,11 @@ case class Sudoku(content: Array[Array[Int]]) {
   }
 
   def getColumn(index: Int): Array[Int] = {
-    val result = scala.collection.mutable.ArrayBuffer.empty[Int]
-    content.foreach { row =>
-      row.zipWithIndex.foreach { case (cell, columnIndex) =>
-        if (columnIndex == index) {
-          result.addOne(cell)
-        }
-      }
-    }
-    result.toArray
+    for {
+      row <- content
+      (cell, columnIndex) <- row.zipWithIndex
+      if (columnIndex == index)
+    } yield cell
   }
 
   def getSquare(point: Point): Array[Int] = {
@@ -53,17 +44,12 @@ case class Sudoku(content: Array[Array[Int]]) {
     val squareLeftColumn = squareColumnIndex * squareSide
     val squareRightColumn = squareLeftColumn + squareSide - 1
 
-    val result = scala.collection.mutable.ArrayBuffer.empty[Int]
-    content.zipWithIndex.foreach { case (row, rowIndex) =>
-      if(squareTopRow <= rowIndex && rowIndex <= squareBottomRow) {
-        row.zipWithIndex.foreach { case (cell, columnIndex) =>
-          if (squareLeftColumn <= columnIndex && columnIndex <= squareRightColumn) {
-            result.addOne(cell)
-          }
-        }
-      }
-    }
-    result.toArray
+    for {
+      (row, rowIndex) <- content.zipWithIndex
+      if (squareTopRow <= rowIndex && rowIndex <= squareBottomRow)
+      (cell, columnIndex) <- row.zipWithIndex
+      if (squareLeftColumn <= columnIndex && columnIndex <= squareRightColumn)
+    } yield cell
   }
 
 }
